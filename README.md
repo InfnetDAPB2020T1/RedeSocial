@@ -1,5 +1,5 @@
 # RedeSocial
 #Integrantes:
-Lucas Martins
-Pedro Couto
-Cecília Santos
+####Lucas Martins
+####Pedro Couto
+####Cecília Santos
