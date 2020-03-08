@@ -19,10 +19,9 @@ class TelaInicial : AppCompatActivity() {
             TransitionSet().apply {
                 addTransition(Fade())
 
-                addTarget(R.id.telaInicial)
+                addTarget(R.id.telaLogin)
             }
             startActivity(i)
-            //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish()
         }, 3000)
     }
