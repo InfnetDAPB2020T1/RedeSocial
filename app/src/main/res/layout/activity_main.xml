@@ -74,7 +74,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#C2185B"
+        android:backgroundTint="@color/colorAccent"
         android:text="Ok"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#F2FFFFFF"
