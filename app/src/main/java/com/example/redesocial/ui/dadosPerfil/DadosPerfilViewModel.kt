@@ -6,8 +6,15 @@ import androidx.lifecycle.ViewModel
 
 class DadosPerfilViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dadosPerfil Fragment"
+    private val _email = MutableLiveData<String>().apply {
+        value = "cecilia.santos@al.infnet.edu.br"
     }
-    val text: LiveData<String> = _text
+    val email: LiveData<String> = _email
+    private val _campoEmail = MutableLiveData<String>().apply {
+        value = "Email: "
+    }
+    val campoEmail: LiveData<String> = _campoEmail
+
+
+
 }
