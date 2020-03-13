@@ -26,8 +26,8 @@ class DadosPerfilFragment : Fragment() {
     ): View? {
         dadosPerfilViewModel =
             ViewModelProviders.of(this).get(DadosPerfilViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_nova_mensagem, container, false)
-        val textView: TextView = root.findViewById(R.id.text_nova_mensagem)
+        val root = inflater.inflate(R.layout.fragment_dados_perfil, container, false)
+        val textView: TextView = root.findViewById(R.id.text_dados_perfil)
         dadosPerfilViewModel.text.observe(this, Observer {
             textView.text = it
         })

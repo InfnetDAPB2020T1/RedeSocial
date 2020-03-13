@@ -30,10 +30,10 @@
         tools:layout="@layout/fragment_nova_mensagem" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.redesocial.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:id="@+id/nav_editar_perfil"
+        android:name="com.example.redesocial.ui.editarPerfil.EditarPerfilFragment"
+        android:label="@string/menu_editar_perfil"
+        tools:layout="@layout/fragment_editar_perfil" />
 
     <fragment
         android:id="@+id/nav_timeline"

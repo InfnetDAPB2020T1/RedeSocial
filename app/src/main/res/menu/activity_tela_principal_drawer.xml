@@ -22,16 +22,16 @@
             android:title="@string/menu_pesquisa" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Perfil">
         <menu>
             <item
                 android:id="@+id/nav_dados_perfil"
                 android:icon="@drawable/ic_dados_perfil_black"
                 android:title="@string/menu_dados_perfil" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
+                android:id="@+id/nav_editar_perfil"
+                android:icon="@drawable/ic_editar_perfil_black"
+                android:title="@string/menu_editar_perfil" />
         </menu>
     </item>
 
