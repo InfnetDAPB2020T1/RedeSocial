@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class PesquisaViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is pesquisa Fragment"
+        value = "Pesquisa"
     }
     val text: LiveData<String> = _text
 }
