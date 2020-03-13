@@ -1,4 +1,4 @@
-package com.example.redesocial.ui.amizades
+package com.example.redesocial.ui.convites
 
 
 import android.os.Bundle
@@ -11,24 +11,24 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import com.example.redesocial.R
-
+import com.example.redesocial.ui.amizades.AmizadesViewModel
 
 /**
  * A simple [Fragment] subclass.
  */
-class AmizadesFragment : Fragment() {
+class ConvitesFragment : Fragment() {
 
-    private lateinit var amizadesViewModel: AmizadesViewModel
+    private lateinit var convitesViewModel: ConvitesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        amizadesViewModel =
-            ViewModelProviders.of(this).get(AmizadesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_amizades, container, false)
-        val textView: TextView = root.findViewById(R.id.text_amizades)
-        amizadesViewModel.text.observe(this, Observer {
+        convitesViewModel =
+            ViewModelProviders.of(this).get(ConvitesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_convites, container, false)
+        val textView: TextView = root.findViewById(R.id.text_convites)
+        convitesViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

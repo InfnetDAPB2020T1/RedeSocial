@@ -30,6 +30,12 @@
         tools:layout="@layout/fragment_amizades" />
 
     <fragment
+        android:id="@+id/nav_convites"
+        android:name="com.example.redesocial.ui.convites.ConvitesFragment"
+        android:label="@string/menu_convites"
+        tools:layout="@layout/fragment_convites" />
+
+    <fragment
         android:id="@+id/nav_nova_mensagem"
         android:name="com.example.redesocial.ui.novaMensagem.NovaMensagemFragment"
         android:label="@string/menu_nova_mensagem"

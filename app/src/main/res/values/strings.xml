@@ -16,5 +16,6 @@
     <string name="menu_editar_perfil">Editar Perfil</string>
     <string name="menu_deletar_perfil">Deletar Perfil</string>
     <string name="menu_amizades">Amizades</string>
+    <string name="menu_convites">Convites</string>
 
 </resources>
