@@ -1,5 +1,4 @@
-package com.example.redesocial.ui.timeline
-
+package com.example.redesocial.ui.deletarPerfil
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,19 +15,19 @@ import com.example.redesocial.R
 /**
  * A simple [Fragment] subclass.
  */
-class TimelineFragment : Fragment() {
+class DeletarPerfilFragment : Fragment() {
 
-    private lateinit var timelineViewModel: TimelineViewModel
+    private lateinit var deletarPerfilViewModel: DeletarPerfilViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        timelineViewModel =
-            ViewModelProviders.of(this).get(TimelineViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_timeline, container, false)
-        val textView: TextView = root.findViewById(R.id.text_timeline)
-        timelineViewModel.text.observe(this, Observer {
+        deletarPerfilViewModel =
+            ViewModelProviders.of(this).get(DeletarPerfilViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_deletar_perfil, container, false)
+        val textView: TextView = root.findViewById(R.id.text_deletar_perfil)
+        deletarPerfilViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

@@ -6,32 +6,44 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home_black"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
             android:id="@+id/nav_timeline"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Timeline" />
+            android:icon="@drawable/ic_access_time_black"
+            android:title="@string/menu_timeline" />
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:id="@+id/nav_nova_mensagem"
+            android:icon="@drawable/ic_message_black"
+            android:title="@string/menu_nova_mensagem" />
+        <item
+            android:id="@+id/nav_amizades"
+            android:icon="@drawable/ic_amizades_black"
+            android:title="@string/menu_amizades" />
+        <item
+            android:id="@+id/nav_convites"
+            android:icon="@drawable/ic_convite_black"
+            android:title="@string/menu_convites" />
+        <item
+            android:id="@+id/nav_pesquisa"
+            android:icon="@drawable/ic_search_for_black"
+            android:title="@string/menu_pesquisa" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Perfil">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+                android:id="@+id/nav_dados_perfil"
+                android:icon="@drawable/ic_dados_perfil_black"
+                android:title="@string/menu_dados_perfil" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
+                android:id="@+id/nav_editar_perfil"
+                android:icon="@drawable/ic_editar_perfil_black"
+                android:title="@string/menu_editar_perfil" />
+            <item
+                android:id="@+id/nav_deletar_perfil"
+                android:icon="@drawable/ic_deletar_perfil_black"
+                android:title="@string/menu_deletar_perfil" />
         </menu>
     </item>
 

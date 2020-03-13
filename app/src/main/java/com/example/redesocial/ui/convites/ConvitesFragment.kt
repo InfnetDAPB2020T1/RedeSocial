@@ -1,4 +1,4 @@
-package com.example.redesocial.ui.timeline
+package com.example.redesocial.ui.convites
 
 
 import android.os.Bundle
@@ -16,19 +16,19 @@ import com.example.redesocial.R
 /**
  * A simple [Fragment] subclass.
  */
-class TimelineFragment : Fragment() {
+class ConvitesFragment : Fragment() {
 
-    private lateinit var timelineViewModel: TimelineViewModel
+    private lateinit var convitesViewModel: ConvitesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        timelineViewModel =
-            ViewModelProviders.of(this).get(TimelineViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_timeline, container, false)
-        val textView: TextView = root.findViewById(R.id.text_timeline)
-        timelineViewModel.text.observe(this, Observer {
+        convitesViewModel =
+            ViewModelProviders.of(this).get(ConvitesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_convites, container, false)
+        val textView: TextView = root.findViewById(R.id.text_convites)
+        convitesViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

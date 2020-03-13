@@ -1,4 +1,4 @@
-package com.example.redesocial.ui.timeline
+package com.example.redesocial.ui.pesquisa
 
 
 import android.os.Bundle
@@ -16,19 +16,19 @@ import com.example.redesocial.R
 /**
  * A simple [Fragment] subclass.
  */
-class TimelineFragment : Fragment() {
+class PesquisaFragment : Fragment() {
 
-    private lateinit var timelineViewModel: TimelineViewModel
+    private lateinit var pesquisaViewModel: PesquisaViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        timelineViewModel =
-            ViewModelProviders.of(this).get(TimelineViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_timeline, container, false)
-        val textView: TextView = root.findViewById(R.id.text_timeline)
-        timelineViewModel.text.observe(this, Observer {
+        pesquisaViewModel =
+            ViewModelProviders.of(this).get(PesquisaViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_pesquisa, container, false)
+        val textView: TextView = root.findViewById(R.id.text_pesquisa)
+        pesquisaViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

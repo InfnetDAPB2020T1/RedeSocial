@@ -12,37 +12,50 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.redesocial.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_dados_perfil"
+        android:name="com.example.redesocial.ui.dadosPerfil.DadosPerfilFragment"
+        android:label="@string/menu_dados_perfil"
+        tools:layout="@layout/fragment_dados_perfil" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.redesocial.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_pesquisa"
+        android:name="com.example.redesocial.ui.pesquisa.PesquisaFragment"
+        android:label="@string/menu_pesquisa"
+        tools:layout="@layout/fragment_pesquisa" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.redesocial.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:id="@+id/nav_amizades"
+        android:name="com.example.redesocial.ui.amizades.AmizadesFragment"
+        android:label="@string/menu_amizades"
+        tools:layout="@layout/fragment_amizades" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.redesocial.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_convites"
+        android:name="com.example.redesocial.ui.convites.ConvitesFragment"
+        android:label="@string/menu_convites"
+        tools:layout="@layout/fragment_convites" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.redesocial.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:id="@+id/nav_nova_mensagem"
+        android:name="com.example.redesocial.ui.novaMensagem.NovaMensagemFragment"
+        android:label="@string/menu_nova_mensagem"
+        tools:layout="@layout/fragment_nova_mensagem" />
+
+    <fragment
+        android:id="@+id/nav_editar_perfil"
+        android:name="com.example.redesocial.ui.editarPerfil.EditarPerfilFragment"
+        android:label="@string/menu_editar_perfil"
+        tools:layout="@layout/fragment_editar_perfil" />
+
+    <fragment
+        android:id="@+id/nav_deletar_perfil"
+        android:name="com.example.redesocial.ui.deletarPerfil.DeletarPerfilFragment"
+        android:label="@string/menu_deletar_perfil"
+        tools:layout="@layout/fragment_deletar_perfil" />
+
     <fragment
         android:id="@+id/nav_timeline"
         android:name="com.example.redesocial.ui.timeline.TimelineFragment"
-        android:label="Timeline"
+        android:label="@string/menu_timeline"
         tools:layout="@layout/fragment_timeline" />
 </navigation>

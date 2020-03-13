@@ -1,4 +1,4 @@
-package com.example.redesocial.ui.timeline
+package com.example.redesocial.ui.editarPerfil
 
 
 import android.os.Bundle
@@ -16,19 +16,19 @@ import com.example.redesocial.R
 /**
  * A simple [Fragment] subclass.
  */
-class TimelineFragment : Fragment() {
+class EditarPerfilFragment : Fragment() {
 
-    private lateinit var timelineViewModel: TimelineViewModel
+    private lateinit var editarPerfilViewModel: EditarPerfilViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        timelineViewModel =
-            ViewModelProviders.of(this).get(TimelineViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_timeline, container, false)
-        val textView: TextView = root.findViewById(R.id.text_timeline)
-        timelineViewModel.text.observe(this, Observer {
+        editarPerfilViewModel =
+            ViewModelProviders.of(this).get(EditarPerfilViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_editar_perfil, container, false)
+        val textView: TextView = root.findViewById(R.id.text_editar_perfil)
+        editarPerfilViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

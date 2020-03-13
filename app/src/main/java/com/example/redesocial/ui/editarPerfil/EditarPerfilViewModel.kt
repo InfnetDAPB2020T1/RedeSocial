@@ -1,13 +1,13 @@
-package com.example.redesocial.ui.send
+package com.example.redesocial.ui.editarPerfil
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SendViewModel : ViewModel() {
+class EditarPerfilViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is send Fragment"
+        value = "This is editarPerfil Fragment"
     }
     val text: LiveData<String> = _text
 }

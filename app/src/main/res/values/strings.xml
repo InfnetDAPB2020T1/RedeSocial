@@ -9,11 +9,13 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
     <string name="menu_timeline">Timeline</string>
+    <string name="menu_pesquisa">Pesquisa</string>
+    <string name="menu_nova_mensagem">Nova Mensagem</string>
+    <string name="menu_dados_perfil">Dados Perfil</string>
+    <string name="menu_editar_perfil">Editar Perfil</string>
+    <string name="menu_deletar_perfil">Deletar Perfil</string>
+    <string name="menu_amizades">Amizades</string>
+    <string name="menu_convites">Convites</string>
 
 </resources>
