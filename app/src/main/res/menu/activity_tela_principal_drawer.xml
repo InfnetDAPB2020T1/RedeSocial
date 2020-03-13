@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_message_black"
             android:title="@string/menu_nova_mensagem" />
         <item
+            android:id="@+id/nav_amizades"
+            android:icon="@drawable/ic_amizades_black"
+            android:title="@string/menu_amizades" />
+        <item
             android:id="@+id/nav_pesquisa"
             android:icon="@drawable/ic_search_for_black"
             android:title="@string/menu_pesquisa" />
