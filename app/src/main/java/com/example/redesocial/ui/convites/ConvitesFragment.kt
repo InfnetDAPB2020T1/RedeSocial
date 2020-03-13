@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import com.example.redesocial.R
-import com.example.redesocial.ui.amizades.AmizadesViewModel
+
 
 /**
  * A simple [Fragment] subclass.
