@@ -37,7 +37,8 @@ class TelaPrincipal : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_dados_perfil, R.id.nav_timeline,
-                R.id.nav_pesquisa, R.id.nav_nova_mensagem, R.id.nav_editar_perfil
+                R.id.nav_pesquisa, R.id.nav_nova_mensagem, R.id.nav_editar_perfil,
+                R.id.nav_deletar_perfil
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -14,5 +14,6 @@
     <string name="menu_nova_mensagem">Nova Mensagem</string>
     <string name="menu_dados_perfil">Dados Perfil</string>
     <string name="menu_editar_perfil">Editar Perfil</string>
+    <string name="menu_deletar_perfil">Deletar Perfil</string>
 
 </resources>
