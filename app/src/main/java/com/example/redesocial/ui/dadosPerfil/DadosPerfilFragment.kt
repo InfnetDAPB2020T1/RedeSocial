@@ -18,19 +18,13 @@ import com.example.redesocial.R
  */
 class DadosPerfilFragment : Fragment() {
 
-    private lateinit var dadosPerfilViewModel: DadosPerfilViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dadosPerfilViewModel =
-            ViewModelProviders.of(this).get(DadosPerfilViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_dados_perfil, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dados_perfil)
-        dadosPerfilViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+
         return root
     }
 
