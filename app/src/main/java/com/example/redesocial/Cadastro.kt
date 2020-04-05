@@ -3,26 +3,21 @@ package com.example.redesocial
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_cadastro.*
 import me.ibrahimsn.particle.ParticleView
 
-class MainActivity : AppCompatActivity() {
+class Cadastro : AppCompatActivity() {
 
     private lateinit var particleView: ParticleView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_cadastro)
 
-        particleView = findViewById(R.id.particleView)
+        particleView = findViewById(R.id.particleViewCadastro)
 
-        btnLogin.setOnClickListener{
+        btnEnviaCadastro.setOnClickListener {
             var i = Intent(this, TelaPrincipal::class.java)
-            startActivity(i)
-        }
-
-        btnIrParaCadastro.setOnClickListener{
-            var i = Intent(this, Cadastro::class.java)
             startActivity(i)
         }
     }

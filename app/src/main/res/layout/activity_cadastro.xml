@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/telaLogin"
-    tools:context=".MainActivity">
+    tools:context=".Cadastro">
 
     <me.ibrahimsn.particle.ParticleView
-        android:id="@+id/particleView"
+        android:id="@+id/particleViewCadastro"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:backgroundColor="#C1FFFFFF"
@@ -25,15 +24,15 @@
         app:particleCount="35" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:id="@+id/usernameInputLayoutCad"
         android:layout_width="284dp"
         android:layout_height="wrap_content"
         app:hintEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/particleView"
-        app:layout_constraintTop_toTopOf="@+id/particleView"
-        app:layout_constraintVertical_bias="0.36">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.07999998">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -42,15 +41,35 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/emailInputLayoutCad"
         android:layout_width="284dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:hintEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/particleView"
-        app:layout_constraintTop_toTopOf="@+id/particleView"
-        app:layout_constraintVertical_bias="0.49">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameInputLayoutCad"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textWebEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordInputLayoutCad"
+        android:layout_width="284dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailInputLayoutCad"
+        app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -66,38 +85,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/particleView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.16000003"
         app:srcCompat="@drawable/passaropretotransparentepeq" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnEnviaCadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
-        android:text="Sign in"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#F2FFFFFF"
+        android:text="Cadastrar"
+        android:textColor="#FCFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/particleView"
-        app:layout_constraintHorizontal_bias="0.26"
-        app:layout_constraintStart_toStartOf="@+id/particleView"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:layout_constraintVertical_bias="0.29000002" />
-
-    <Button
-        android:id="@+id/btnIrParaCadastro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Sign up"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/particleView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintStart_toEndOf="@+id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:layout_constraintVertical_bias="0.29000002" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputLayoutCad"
+        app:layout_constraintVertical_bias="0.32999998" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
