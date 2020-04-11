@@ -30,7 +30,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/userbacksembkg" />
+            app:srcCompat="@drawable/userpeqbkggray" />
 
         <TextView
             android:id="@+id/username_lista"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:text="Username: User"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

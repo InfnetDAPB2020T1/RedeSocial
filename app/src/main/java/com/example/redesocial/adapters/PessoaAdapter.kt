@@ -11,12 +11,12 @@ import com.example.redesocial.models.Pessoa
 
 class PessoaAdapter() : RecyclerView.Adapter<PessoaAdapter.PessoaViewHolder>(){
 
-    var listaPessoas = mutableListOf<Pessoa>(Pessoa("Lucas",R.drawable.userbacksembkg),
-        Pessoa("Eduardo",R.drawable.userbacksembkg),
-        Pessoa("Pedro",R.drawable.userbacksembkg),
-        Pessoa("Paulo",R.drawable.userbacksembkg),
-        Pessoa("Cecília",R.drawable.userbacksembkg),
-        Pessoa("Santos",R.drawable.userbacksembkg))
+    var listaPessoas = mutableListOf<Pessoa>(Pessoa("Lucas",R.drawable.userpeqbkggray),
+        Pessoa("Eduardo",R.drawable.userpeqbkggray),
+        Pessoa("Pedro",R.drawable.userpeqbkggray),
+        Pessoa("Paulo",R.drawable.userpeqbkggray),
+        Pessoa("Cecília",R.drawable.userpeqbkggray),
+        Pessoa("Santos",R.drawable.userpeqbkggray))
 
     class PessoaViewHolder(itemView: View):
         RecyclerView.ViewHolder(itemView){
