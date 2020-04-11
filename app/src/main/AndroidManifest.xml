@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Cadastro"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
         <activity
             android:name=".TelaPrincipal"
             android:label="@string/title_activity_tela_principal"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Geral" />
         <activity
             android:name=".TelaInicial"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
