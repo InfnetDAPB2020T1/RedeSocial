@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.redesocial.util.Validacoes
+import com.example.redesocial.util.Validacoes.Companion.verificaCampoPreenchido
+import com.example.redesocial.util.Validacoes.Companion.verificaUsuario
 import kotlinx.android.synthetic.main.activity_main.*
 import me.ibrahimsn.particle.ParticleView
 
@@ -45,25 +48,6 @@ class MainActivity : AppCompatActivity() {
             var i = Intent(this, Cadastro::class.java)
             startActivity(i)
         }
-    }
-
-    fun verificaUsuario(username : String, password : String) : Boolean
-    {
-        var usuarioRegistrado = "user"
-        var senhaRegistrada = "senha"
-
-        if(username.trim() == usuarioRegistrado && password.trim() == senhaRegistrada)
-            return true;
-
-        return false
-    }
-
-    fun verificaCampoPreenchido(param : String) : Boolean
-    {
-        if(param != null && param.trim().isNotEmpty())
-            return true
-
-        return false
     }
 
     override fun onResume() {
