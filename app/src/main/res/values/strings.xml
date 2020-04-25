@@ -18,4 +18,7 @@
     <string name="menu_amizades">Amizades</string>
     <string name="menu_convites">Convites</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/convites_recebidos_fragmento"
+        android:title="Recebidos"
+        android:icon="@drawable/ic_convite_recebido_branco"/>
+    <item android:id="@+id/convites_enviados_fragmento"
+        android:title="Enviados"
+        android:icon="@drawable/ic_send_branco"/>
+
+</menu>
