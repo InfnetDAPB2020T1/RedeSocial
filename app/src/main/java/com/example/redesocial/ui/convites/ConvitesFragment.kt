@@ -1,18 +1,19 @@
 package com.example.redesocial.ui.convites
 
 
+import android.content.ClipData
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.view.menu.MenuView
+import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-
 import com.example.redesocial.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.fragment_convites.*
 
 
 /**
@@ -36,7 +37,7 @@ class ConvitesFragment : Fragment() {
 
     fun configureBottomNavigation(barraNav : BottomNavigationView)
     {
-        barraNav.setupWithNavController(
-            activity!!.findNavController(R.id.host_fragment))
+        barraNav.setupWithNavController(activity!!.findNavController(R.id.host_fragment))
     }
+
 }
