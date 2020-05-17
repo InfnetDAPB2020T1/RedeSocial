@@ -83,9 +83,10 @@
         android:layout_marginStart="54dp"
         android:layout_marginEnd="54dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="Sign in"
+        android:text="Entrar"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#F2FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/particleView"
         app:layout_constraintStart_toStartOf="@+id/particleView"
@@ -98,13 +99,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
         android:layout_marginEnd="54dp"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Sign up"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Novo usuário? Cadastre aqui"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/particleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.58000004" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
