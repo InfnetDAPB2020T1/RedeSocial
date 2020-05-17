@@ -48,24 +48,19 @@ class ValidacoesTest {
     @Test
     fun verificar_cadastro()
     {
-        var usernameValido = "username"
-        var usernameInvalido = "us"
         var emailValido = "user@email.com"
         var emailInvalido = "u@tst.com"
         var passwordValido = "password"
         var passwordInvalido = "psw"
         var resposta : String?
 
-        resposta = Validacoes.verificaDadosCadastro(usernameValido,emailValido,passwordValido)
+        resposta = Validacoes.verificaDadosCadastro(emailValido,passwordValido)
         assertNull(resposta)
 
-        resposta = Validacoes.verificaDadosCadastro(usernameInvalido,emailValido,passwordValido)
-        assertEquals("Username deve ter de 3 a 15 caracteres!",resposta)
-
-        resposta = Validacoes.verificaDadosCadastro(usernameValido,emailInvalido,passwordValido)
+        resposta = Validacoes.verificaDadosCadastro(emailInvalido,passwordValido)
         assertEquals("Email deve ter de 12 a 70 caracteres!",resposta)
 
-        resposta = Validacoes.verificaDadosCadastro(usernameValido,emailValido,passwordInvalido)
+        resposta = Validacoes.verificaDadosCadastro(emailValido,passwordInvalido)
         assertEquals("Password deve ter de 5 a 10 caracteres!",resposta)
     }
 }

@@ -1,18 +1,23 @@
 package com.example.redesocial
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.redesocial.util.Validacoes
+import androidx.appcompat.app.AppCompatActivity
 import com.example.redesocial.util.Validacoes.Companion.verificaCampoPreenchido
-import com.example.redesocial.util.Validacoes.Companion.verificaUsuario
+import com.example.redesocial.util.Validacoes.Companion.verificaEmail
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import me.ibrahimsn.particle.ParticleView
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var particleView: ParticleView
+    private lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,22 +25,16 @@ class MainActivity : AppCompatActivity() {
 
         particleView = findViewById(R.id.particleView)
 
+        auth = FirebaseAuth.getInstance()
+
         btnLogin.setOnClickListener{
 
-            var username = usernameLogin.text.toString()
+            var email = emailLogin.text.toString()
             var password = passwordLogin.text.toString()
 
-            if(verificaCampoPreenchido(username) && verificaCampoPreenchido(password))
+            if(verificaCampoPreenchido(email) && verificaEmail(email) && verificaCampoPreenchido(password))
             {
-                if(verificaUsuario(username,password))
-                {
-                    var i = Intent(this, TelaPrincipal::class.java)
-                    startActivity(i)
-                }
-                else
-                {
-                    Toast.makeText(this,"Usuário não cadastrado!",Toast.LENGTH_SHORT).show()
-                }
+                verificaLogin(email,password);
             }
             else
             {
@@ -50,6 +49,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if(currentUser != null)
+        {
+            var intent = Intent(this,TelaPrincipal::class.java)
+            startActivity(intent)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         particleView.resume()
@@ -58,5 +67,23 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         particleView.pause()
+    }
+
+    fun verificaLogin(email : String, password : String)
+    {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success
+                    var intent = Intent(this,TelaPrincipal::class.java)
+                    startActivity(intent)
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(baseContext, "Usuário não encontrado!",
+                        Toast.LENGTH_SHORT).show()
+                }
+
+            }
     }
 }

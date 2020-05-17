@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "788792494674",
+    "firebase_url": "https://redesocialauth.firebaseio.com",
+    "project_id": "redesocialauth",
+    "storage_bucket": "redesocialauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788792494674:android:99bdb6eae309d0c0e4ad8b",
+        "android_client_info": {
+          "package_name": "com.example.redesocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788792494674-r96nv7qh64ji02tkngc7amo0jvkaok3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.redesocial",
+            "certificate_hash": "ef2f159849ac43779d7461a9d82c0cc436434020"
+          }
+        },
+        {
+          "client_id": "788792494674-9kr8799sb5qgcikn5e3d7u8s3jvh2irr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmxGOMpdUWOn4zD23NlacA-zRySz0fwpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788792494674-9kr8799sb5qgcikn5e3d7u8s3jvh2irr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -27,12 +27,9 @@ class Validacoes {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
         }
 
-        fun verificaDadosCadastro(username : String, email: String,password: String) : String?
+        fun verificaDadosCadastro(email: String,password: String) : String?
         {
-            if(username.length < 3 || username.length > 15)
-            {
-                return "Username deve ter de 3 a 15 caracteres!"
-            }
+
             if(email.length < 10 || email.length > 70)
             {
                 return "Email deve ter de 12 a 70 caracteres!"
