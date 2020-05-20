@@ -10,10 +10,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.redesocial.R
 import com.example.redesocial.adapters.PessoaAdapter
+import com.example.redesocial.models.Pessoa
 import kotlinx.android.synthetic.main.fragment_amizades.*
 
 
 class AmizadesFragment : Fragment() {
+
+    var listaPessoas = mutableListOf<Pessoa>(
+        Pessoa("Lucas",R.drawable.userpeqbkggray),
+        Pessoa("Eduardo",R.drawable.userpeqbkggray),
+        Pessoa("Pedro",R.drawable.userpeqbkggray),
+        Pessoa("Paulo",R.drawable.userpeqbkggray),
+        Pessoa("Cecília",R.drawable.userpeqbkggray),
+        Pessoa("Santos",R.drawable.userpeqbkggray)
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +39,14 @@ class AmizadesFragment : Fragment() {
 
     fun configurarRecyclerView()
     {
-        listagemAmizades.layoutManager = LinearLayoutManager(activity)
-        listagemAmizades.adapter = PessoaAdapter()
+        if(!listaPessoas.isNullOrEmpty()) {
+            listagemAmizades.layoutManager = LinearLayoutManager(activity)
+            listagemAmizades.adapter = PessoaAdapter(listaPessoas)
+        }
+        else
+        {
+            listagemAmizades.visibility = View.GONE
+            empty_view_amizades.visibility = View.VISIBLE
+        }
     }
 }

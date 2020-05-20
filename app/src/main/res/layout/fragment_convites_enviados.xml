@@ -16,4 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_pessoa" />
+
+    <TextView
+        android:id="@+id/empty_view_convites_enviados"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="Não existem convites seus aguardando resposta"
+        android:fontFamily="casual"
+        android:textSize="28sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

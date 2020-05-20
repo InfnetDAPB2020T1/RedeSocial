@@ -9,12 +9,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.redesocial.R
 import com.example.redesocial.adapters.PessoaAdapter
+import com.example.redesocial.models.Pessoa
 import kotlinx.android.synthetic.main.fragment_convites_recebidos.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class ConvitesRecebidos : Fragment() {
+
+    var listaPessoas = mutableListOf<Pessoa>(
+        Pessoa("Lucas",R.drawable.userpeqbkggray),
+        Pessoa("Eduardo",R.drawable.userpeqbkggray),
+        Pessoa("Pedro",R.drawable.userpeqbkggray),
+        Pessoa("Paulo",R.drawable.userpeqbkggray),
+        Pessoa("Cecília",R.drawable.userpeqbkggray),
+        Pessoa("Santos",R.drawable.userpeqbkggray)
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +41,14 @@ class ConvitesRecebidos : Fragment() {
 
     fun configurarRecyclerView()
     {
-        listagem_convites_recebidos.layoutManager = LinearLayoutManager(activity)
-        listagem_convites_recebidos.adapter = PessoaAdapter()
+        if(!listaPessoas.isNullOrEmpty()) {
+            listagem_convites_recebidos.layoutManager = LinearLayoutManager(activity)
+            listagem_convites_recebidos.adapter = PessoaAdapter(listaPessoas)
+        }
+        else
+        {
+            listagem_convites_recebidos.visibility = View.GONE
+            empty_view_convites_recebidos.visibility = View.VISIBLE
+        }
     }
 }

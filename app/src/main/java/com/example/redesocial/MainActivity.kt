@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.redesocial.ui.carregamentoalerta.LoadingAlerta
 import com.example.redesocial.util.Validacoes.Companion.verificaCampoPreenchido
 import com.example.redesocial.util.Validacoes.Companion.verificaEmail
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var particleView: ParticleView
     private lateinit var auth : FirebaseAuth
+    private lateinit var dialog : LoadingAlerta
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
             if(verificaCampoPreenchido(email) && verificaEmail(email) && verificaCampoPreenchido(password))
             {
+                dialog = LoadingAlerta(this)
+                dialog.startLoadingDialog("Autenticando...")
                 verificaLogin(email,password);
             }
             else
@@ -75,6 +77,7 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success
+                    dialog.dismiss()
                     var intent = Intent(this,TelaPrincipal::class.java)
                     startActivity(intent)
 

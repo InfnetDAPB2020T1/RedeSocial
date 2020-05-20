@@ -9,14 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.redesocial.R
 import com.example.redesocial.models.Pessoa
 
-class PessoaAdapter() : RecyclerView.Adapter<PessoaAdapter.PessoaViewHolder>(){
+class PessoaAdapter(listaPessoas : List<Pessoa>) : RecyclerView.Adapter<PessoaAdapter.PessoaViewHolder>(){
 
-    var listaPessoas = mutableListOf<Pessoa>(Pessoa("Lucas",R.drawable.userpeqbkggray),
-        Pessoa("Eduardo",R.drawable.userpeqbkggray),
-        Pessoa("Pedro",R.drawable.userpeqbkggray),
-        Pessoa("Paulo",R.drawable.userpeqbkggray),
-        Pessoa("Cecília",R.drawable.userpeqbkggray),
-        Pessoa("Santos",R.drawable.userpeqbkggray))
+    var listaPessoas = listaPessoas
 
     class PessoaViewHolder(itemView: View):
         RecyclerView.ViewHolder(itemView){
