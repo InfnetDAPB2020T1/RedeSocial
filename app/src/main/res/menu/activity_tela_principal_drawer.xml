@@ -40,10 +40,6 @@
                 android:id="@+id/nav_editar_perfil"
                 android:icon="@drawable/ic_editar_perfil_black"
                 android:title="@string/menu_editar_perfil" />
-            <item
-                android:id="@+id/nav_deletar_perfil"
-                android:icon="@drawable/ic_deletar_perfil_black"
-                android:title="@string/menu_deletar_perfil" />
         </menu>
     </item>
 

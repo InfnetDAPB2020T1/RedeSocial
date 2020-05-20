@@ -27,10 +27,7 @@ class NovaMensagemFragment : Fragment() {
         novaMensagemViewModel =
             ViewModelProviders.of(this).get(NovaMensagemViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_nova_mensagem, container, false)
-        val textView: TextView = root.findViewById(R.id.text_nova_mensagem)
-        novaMensagemViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+
         return root
     }
 
