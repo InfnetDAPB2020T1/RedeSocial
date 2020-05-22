@@ -40,6 +40,10 @@
                 android:id="@+id/nav_editar_perfil"
                 android:icon="@drawable/ic_editar_perfil_black"
                 android:title="@string/menu_editar_perfil" />
+            <item
+                android:id="@+id/nav_anuncio"
+                android:icon="@drawable/ic_anuncio"
+                android:title="@string/menu_anuncio" />
         </menu>
     </item>
 

@@ -52,4 +52,8 @@
         android:name="com.example.redesocial.ui.timeline.TimelineFragment"
         android:label="@string/menu_timeline"
         tools:layout="@layout/fragment_timeline" />
+    <fragment
+        android:id="@+id/nav_anuncio"
+        android:name="com.example.redesocial.ui.anuncio.AnuncioFragment"
+        android:label="@string/menu_anuncio" />
 </navigation>

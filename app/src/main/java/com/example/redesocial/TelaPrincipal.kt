@@ -33,7 +33,7 @@ class TelaPrincipal : AppCompatActivity() {
             setOf(
                 R.id.nav_home, R.id.nav_dados_perfil, R.id.nav_timeline,
                 R.id.nav_pesquisa, R.id.nav_nova_mensagem, R.id.nav_editar_perfil,
-                R.id.nav_amizades,R.id.nav_convites
+                R.id.nav_amizades,R.id.nav_convites,R.id.nav_anuncio
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
