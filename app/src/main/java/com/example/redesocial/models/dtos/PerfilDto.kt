@@ -6,12 +6,12 @@ import java.util.*
 data class PerfilDto(
     @SerializedName("id")
     var id : Int?,
-    @SerializedName("seriegerado")
+    @SerializedName("serieGerado")
     var serieGerado: String,
     @SerializedName("nome")
     var nome : String,
-    @SerializedName("datanascimento")
-    var dataNascimento : Date,
+    @SerializedName("dataNascimento")
+    var dataNascimento : String,
     @SerializedName("email")
     var email : String,
     @SerializedName("sobre")

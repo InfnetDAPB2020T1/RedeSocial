@@ -11,10 +11,10 @@ interface EndpointsApi {
     @GET("perfil")
     fun listarPerfis() : Call<List<PerfilDto>>
 
-    @GET("perfil/{id}")
+    @GET("/perfil/{id}")
     fun buscarPerfil(@Path("id") id : Int) : Call<PerfilDto>
 
-    @POST("perfil")
+    @POST("/perfil")
     fun criarPerfil(@Body perfilDto: PerfilDto) : Call<PerfilDto>
 
     @PUT("perfil/{id}")
@@ -39,10 +39,10 @@ interface EndpointsApi {
     fun buscarTimeline(@Path("id") id : Int) : Call<List<MensagemDto>>
 
     @POST("mensagem/{idPerfil}")
-    fun criarMensagem(@Path("id") idPerfil : Int, @Body mensagemDto: MensagemDto)
+    fun criarMensagem(@Path("id") idPerfil : Int, @Body mensagemDto: MensagemDto) : Call<MensagemDto>
 
     @DELETE("mensagem/{id}")
-    fun deletarMensagem(@Path("id") id : Int)
+    fun deletarMensagem(@Path("id") id : Int) : Call<MensagemDto>
 
     @GET("amizades/meusconvites/{id}")
     fun buscarMeusConvites(@Path("id") id : Int) : Call<List<ConviteDto>>
@@ -51,13 +51,13 @@ interface EndpointsApi {
     fun buscarConvitesRecebidos(@Path("id") id : Int) : Call<List<ConviteDto>>
 
     @GET("amizades/{perfilId}/aceitar/{idConvidante}")
-    fun aceitarConvite(@Path("perfilId") perfilId : Int, @Path("idConvidante") idConvidante : Int)
+    fun aceitarConvite(@Path("perfilId") perfilId : Int, @Path("idConvidante") idConvidante : Int) : Call<Boolean>
 
     @GET("amizades/{perfilId}/bloquear/{idUsuario}")
-    fun bloquearUsuario(@Path("perfilId") perfilId : Int, @Path("idUsuario") idUsuario : Int)
+    fun bloquearUsuario(@Path("perfilId") perfilId : Int, @Path("idUsuario") idUsuario : Int) : Call<Boolean>
 
     @GET("amizades/{perfilId}/convidar/{idConvidado}")
-    fun enviarConvite(@Path("perfilId") perfilId : Int, @Path("idConvidado") idConvidado : Int)
+    fun enviarConvite(@Path("perfilId") perfilId : Int, @Path("idConvidado") idConvidado : Int) : Call<Boolean>
 
     @GET("amizades/sugestoes/{id}")
     fun buscarSugestoesAmizade(@Path("id") id : Int) : Call<List<PerfilDto>>

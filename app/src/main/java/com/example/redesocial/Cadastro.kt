@@ -1,18 +1,29 @@
 package com.example.redesocial
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
+import com.example.redesocial.models.Perfil
+import com.example.redesocial.services.OperacoesPerfilService
+import com.example.redesocial.ui.carregamentoalerta.LoadingAlerta
 import com.example.redesocial.util.Validacoes
+import com.example.redesocial.viewmodel.UsuarioCriadoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import me.ibrahimsn.particle.ParticleView
+import java.util.*
+
 
 class Cadastro : AppCompatActivity() {
 
     private lateinit var particleView: ParticleView
     private lateinit var auth : FirebaseAuth
+    private lateinit var dialog : LoadingAlerta
+    private lateinit var usuarioCriadoViewModel: UsuarioCriadoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +31,15 @@ class Cadastro : AppCompatActivity() {
 
         particleView = findViewById(R.id.particleViewCadastro)
         auth = FirebaseAuth.getInstance()
+
+        usuarioCriadoViewModel = UsuarioCriadoViewModel()
+
+        usuarioCriadoViewModel.usuarioCriado!!.observe(this, Observer{
+            if(it == true)
+            {
+                criarPerfilApiAsync(usuarioCriadoViewModel.email,usuarioCriadoViewModel.password,usuarioCriadoViewModel.uid,this).execute()
+            }
+        })
 
         btnEnviaCadastro.setOnClickListener {
 
@@ -35,7 +55,9 @@ class Cadastro : AppCompatActivity() {
 
                     if(dadosValidos == null)
                     {
-                        criarConta(email, password)
+                        dialog = LoadingAlerta(this)
+                        dialog.startLoadingDialog("Criando usuário...")
+                        criarConta(email, password,this,usuarioCriadoViewModel,dialog)
                     }
                     else
                         Toast.makeText(this,dadosValidos, Toast.LENGTH_SHORT).show()
@@ -58,13 +80,19 @@ class Cadastro : AppCompatActivity() {
         particleView.pause()
     }
 
-    fun criarConta(email : String, password : String){
+    fun criarConta(email : String, password : String, activity: Activity, usuarioCriadoViewModel: UsuarioCriadoViewModel,dialog : LoadingAlerta){
+
+        criarNoFirebase(email, password,dialog, activity,usuarioCriadoViewModel)
+
+    }
+
+    fun criarNoFirebase(email : String, password : String, dialog : LoadingAlerta, activity: Activity,usuarioCriadoViewModel: UsuarioCriadoViewModel){
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success
-                    var intent = Intent(this,TelaPrincipal::class.java)
-                    startActivity(intent)
+
+                    dialog.dismiss()
+                    criarPerfilApiAsync(email,password,auth.uid.toString(),activity).execute()
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -74,4 +102,60 @@ class Cadastro : AppCompatActivity() {
 
             }
     }
+
+
+
+    class BuscarNaApiAsync(email : String, password : String, activity: Activity) : AsyncTask<Void, Void, Perfil>() {
+
+        var email = email
+        var password = password
+        var activity = activity
+
+        override fun doInBackground(vararg params: Void?): Perfil {
+            var perfil = OperacoesPerfilService.getInstance().buscarPerfil(activity, 1)
+            return perfil!!
+        }
+
+        override fun onPostExecute(result: Perfil?) {
+            super.onPostExecute(result)
+
+            var intent = Intent(activity, TelaPrincipal::class.java)
+            activity.startActivity(intent)
+        }
+
+    }
+
+    class criarPerfilApiAsync(email : String, password : String, serieGerado : String, activity: Activity) : AsyncTask<Void, Void, Boolean>(){
+
+        var perfil = Perfil(0,serieGerado,email,"01/01/2000",email,"Usuário da rede BemTeVi","foto")
+        var activity = activity
+        var dialogApi = LoadingAlerta(activity)
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            dialogApi.startLoadingDialog("Criando perfil...")
+        }
+
+        override fun doInBackground(vararg params: Void?): Boolean {
+            dialogApi.startLoadingDialog("Criando perfil...")
+            var sucesso = OperacoesPerfilService.getInstance().criarPerfil(activity, perfil)
+            dialogApi.dismiss()
+            return sucesso
+        }
+
+        override fun onPostExecute(result: Boolean?) {
+            super.onPostExecute(result)
+
+            if(result == true)
+            {
+                var intent = Intent(activity, TelaPrincipal::class.java)
+                activity.startActivity(intent)
+            }
+
+            var intent = Intent(activity, MainActivity::class.java)
+            activity.startActivity(intent)
+        }
+    }
+
 }
+

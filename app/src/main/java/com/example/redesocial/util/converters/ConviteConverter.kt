@@ -16,7 +16,7 @@ class ConviteConverter {
         }
     }
 
-    fun converterDtoParaMensagem(conviteDto: ConviteDto): Convite {
+    fun converterDtoParaConvite(conviteDto: ConviteDto): Convite {
         return Convite(
             conviteDto.id,
             PerfilConverter.getInstance().converterDtoParaPerfil(conviteDto.convidante),
@@ -24,7 +24,7 @@ class ConviteConverter {
             conviteDto.status)
     }
 
-    fun converterMensagemParaDto(convite: Convite): ConviteDto {
+    fun converterConviteParaDto(convite: Convite): ConviteDto {
         return ConviteDto(convite.id,
             PerfilConverter.getInstance().converterPerfilParaDto(convite.convidante),
             PerfilConverter.getInstance().converterPerfilParaDto(convite.convidado),

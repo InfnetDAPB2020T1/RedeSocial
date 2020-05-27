@@ -34,8 +34,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/particleView"
-        app:layout_constraintTop_toTopOf="@+id/particleView"
-        app:layout_constraintVertical_bias="0.36">
+        app:layout_constraintTop_toBottomOf="@+id/foto_menu"
+        app:layout_constraintVertical_bias="0.06999999">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailLogin"
@@ -54,8 +54,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/particleView"
-        app:layout_constraintTop_toTopOf="@+id/particleView"
-        app:layout_constraintVertical_bias="0.49">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        app:layout_constraintVertical_bias="0.050000012">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordLogin"
@@ -72,8 +72,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/particleView"
-        app:layout_constraintVertical_bias="0.16000003"
+        app:layout_constraintTop_toTopOf="@+id/telaLogin"
+        app:layout_constraintVertical_bias="0.13999999"
         app:srcCompat="@drawable/passaropretotransparentepeq" />
 
     <Button

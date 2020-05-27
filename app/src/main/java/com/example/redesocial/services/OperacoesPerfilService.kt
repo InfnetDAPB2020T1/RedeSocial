@@ -10,17 +10,19 @@ import com.example.redesocial.util.converters.PerfilConverter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.Console
 
 class OperacoesPerfilService {
 
-    companion object{
-        private lateinit var operacoes : OperacoesPerfilService
 
-        fun getInstance(activity: Activity?) : OperacoesPerfilService{
+    companion object{
+        private var operacoes : OperacoesPerfilService? = null
+
+        fun getInstance() : OperacoesPerfilService{
             if(operacoes == null)
                 operacoes = OperacoesPerfilService()
 
-            return operacoes
+            return operacoes as OperacoesPerfilService
         }
 
     }
@@ -58,20 +60,43 @@ class OperacoesPerfilService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.buscarPerfil(perfilId)
-        var perfil : Perfil? = null
+        //var perfil : Perfil? = null
 
-        callback.enqueue(object : Callback<PerfilDto> {
+        var corpo = callback.execute().body()!!
+        var id = corpo.id
+        var email = corpo.email
+        var nome = corpo.nome
+        var serieGerado = corpo.serieGerado
+        var dataNasc = corpo.dataNascimento
+        var sobre = corpo.sobre
+        var foto = corpo.foto
+
+        var perfil = Perfil(id,serieGerado,nome,dataNasc,email,sobre,foto)
+
+        /*callback.enqueue(object : Callback<PerfilDto> {
             override fun onFailure(call: Call<PerfilDto>, t: Throwable) {
                 Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<PerfilDto>, response: Response<PerfilDto>) {
-                if(response.isSuccessful && response.body() != null)
+                if(response.isSuccessful)
                 {
-                    perfil = PerfilConverter.getInstance().converterDtoParaPerfil(response.body()!!)
+                    var id = response.body()!!.id
+                    var email = response.body()!!.email
+                    var nome = response.body()!!.nome
+                    var serieGerado = response.body()!!.serieGerado
+                    var dataNasc = response.body()!!.dataNascimento
+                    var sobre = response.body()!!.sobre
+                    var foto = response.body()!!.foto
+
+
+
+                    /*perfil = PerfilConverter.getInstance().converterDtoParaPerfil(response.body()!! as PerfilDto)
+                    var i = 0*/
+
                 }
             }
-        })
+        })*/
 
         return perfil
     }
@@ -83,19 +108,41 @@ class OperacoesPerfilService {
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.criarPerfil(PerfilConverter.getInstance().converterPerfilParaDto(perfil))
         var sucesso = false
+        var perfilDto = callback.execute().body()
 
-        callback.enqueue(object : Callback<PerfilDto> {
+        /*var corpo = callback.execute().body()!!
+        var id = corpo.id
+        var email = corpo.email
+        var nome = corpo.nome
+        var serieGerado = corpo.serieGerado
+        var dataNasc = corpo.dataNascimento
+        var sobre = corpo.sobre
+        var foto = corpo.foto*/
+
+        if(perfilDto == null)
+            return false
+
+        return true;
+
+        /*callback.enqueue(object : Callback<PerfilDto> {
             override fun onFailure(call: Call<PerfilDto>, t: Throwable) {
                 Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<PerfilDto>, response: Response<PerfilDto>) {
                 if(response.isSuccessful && response.body() != null)
-                    sucesso = true;
+                {
+                    println("\n\n\n\n ${response.body()}")
+                }
+                else
+                {
+                    println("\n\n\n\n ${response.errorBody()}")
+                    var i = 0
+                }
             }
-        })
+        })*/
 
-        return sucesso
+        //return sucesso
     }
 
     fun deletarPerfil(activity: Activity, perfilId: Int) : Boolean{

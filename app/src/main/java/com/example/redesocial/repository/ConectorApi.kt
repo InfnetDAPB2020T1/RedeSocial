@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ConectorApi {
 
     companion object {
-        private lateinit var retrofitInstance : Retrofit
+        private var retrofitInstance : Retrofit? = null
         fun getRetrofitInstance(path : String?) : Retrofit {
             if(retrofitInstance == null || path != null)
             {
@@ -15,7 +15,7 @@ class ConectorApi {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }
-            return retrofitInstance
+            return retrofitInstance as Retrofit
         }
     }
 }

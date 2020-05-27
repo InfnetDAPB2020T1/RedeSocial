@@ -6,13 +6,13 @@ import com.example.redesocial.models.dtos.PerfilDto
 class PerfilConverter{
 
     companion object{
-        private lateinit var conversor : PerfilConverter
+        private var conversor : PerfilConverter? = null
 
         fun getInstance() : PerfilConverter{
             if(conversor == null)
                 conversor = PerfilConverter()
 
-            return conversor
+            return conversor as PerfilConverter
         }
 
     }
