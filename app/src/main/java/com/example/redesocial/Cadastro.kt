@@ -23,7 +23,6 @@ class Cadastro : AppCompatActivity() {
     private lateinit var particleView: ParticleView
     private lateinit var auth : FirebaseAuth
     private lateinit var dialog : LoadingAlerta
-    private lateinit var usuarioCriadoViewModel: UsuarioCriadoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,15 +30,6 @@ class Cadastro : AppCompatActivity() {
 
         particleView = findViewById(R.id.particleViewCadastro)
         auth = FirebaseAuth.getInstance()
-
-        usuarioCriadoViewModel = UsuarioCriadoViewModel()
-
-        usuarioCriadoViewModel.usuarioCriado!!.observe(this, Observer{
-            if(it == true)
-            {
-                criarPerfilApiAsync(usuarioCriadoViewModel.email,usuarioCriadoViewModel.password,usuarioCriadoViewModel.uid,this).execute()
-            }
-        })
 
         btnEnviaCadastro.setOnClickListener {
 
@@ -57,7 +47,7 @@ class Cadastro : AppCompatActivity() {
                     {
                         dialog = LoadingAlerta(this)
                         dialog.startLoadingDialog("Criando usuário...")
-                        criarConta(email, password,this,usuarioCriadoViewModel,dialog)
+                        criarConta(email, password,this,dialog)
                     }
                     else
                         Toast.makeText(this,dadosValidos, Toast.LENGTH_SHORT).show()
@@ -80,13 +70,13 @@ class Cadastro : AppCompatActivity() {
         particleView.pause()
     }
 
-    fun criarConta(email : String, password : String, activity: Activity, usuarioCriadoViewModel: UsuarioCriadoViewModel,dialog : LoadingAlerta){
+    fun criarConta(email : String, password : String, activity: Activity,dialog : LoadingAlerta){
 
-        criarNoFirebase(email, password,dialog, activity,usuarioCriadoViewModel)
+        criarNoFirebase(email, password,dialog, activity)
 
     }
 
-    fun criarNoFirebase(email : String, password : String, dialog : LoadingAlerta, activity: Activity,usuarioCriadoViewModel: UsuarioCriadoViewModel){
+    fun criarNoFirebase(email : String, password : String, dialog : LoadingAlerta, activity: Activity){
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
