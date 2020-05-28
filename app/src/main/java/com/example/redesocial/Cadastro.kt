@@ -5,17 +5,14 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.appcompat.app.AppCompatActivity
 import com.example.redesocial.models.Perfil
 import com.example.redesocial.services.OperacoesPerfilService
 import com.example.redesocial.ui.carregamentoalerta.LoadingAlerta
 import com.example.redesocial.util.Validacoes
-import com.example.redesocial.viewmodel.UsuarioCriadoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import me.ibrahimsn.particle.ParticleView
-import java.util.*
 
 
 class Cadastro : AppCompatActivity() {

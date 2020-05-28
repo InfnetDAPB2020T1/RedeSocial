@@ -14,13 +14,13 @@ import retrofit2.Response
 class OperacoesMensagemService (){
 
     companion object{
-        private lateinit var operacoes : OperacoesMensagemService
+        private var operacoes : OperacoesMensagemService? = null
 
         fun getInstance() : OperacoesMensagemService{
             if(operacoes == null)
                 operacoes = OperacoesMensagemService()
 
-            return  operacoes
+            return operacoes as OperacoesMensagemService
         }
     }
 
@@ -30,22 +30,13 @@ class OperacoesMensagemService (){
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.buscarMensagem(mensagemId)
+        var response = callback.execute()
         var mensagem : Mensagem? = null
 
-        callback.enqueue(object : Callback<MensagemDto> {
-            override fun onFailure(call: Call<MensagemDto>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
-            }
+        if(response.isSuccessful)
+            return MensagemConverter.getInstance().converterDtoParaMensagem(response.body()!!)
 
-            override fun onResponse(call: Call<MensagemDto>, response: Response<MensagemDto>) {
-                if(response.isSuccessful && response.body() != null)
-                {
-                    mensagem = MensagemConverter.getInstance().converterDtoParaMensagem(response.body()!!)
-                }
-            }
-        })
-
-        return mensagem
+        return null
     }
 
     fun buscarTimeline(activity: Activity, perfilId : Int) : List<Mensagem>?{
@@ -54,22 +45,19 @@ class OperacoesMensagemService (){
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.buscarTimeline(perfilId)
+        var response = callback.execute()
         var mensagens = mutableListOf<Mensagem>()
 
-        callback.enqueue(object : Callback<List<MensagemDto>> {
-            override fun onFailure(call: Call<List<MensagemDto>>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onResponse(call: Call<List<MensagemDto>>, response: Response<List<MensagemDto>>) {
-                if(response.isSuccessful && !response.body().isNullOrEmpty()) {
-                    response.body()!!.forEach {
-                        mensagens.add(MensagemConverter.getInstance()
-                            .converterDtoParaMensagem(it))
-                    }
+        if(response.isSuccessful && response.body() != null)
+        {
+            response.body()!!.forEach {
+                mensagens.add(MensagemConverter.getInstance()
+                        .converterDtoParaMensagem(it))
                 }
-            }
-        })
+        }
+
+        if(mensagens.size == 0)
+            return null
 
         return mensagens
     }
@@ -80,22 +68,12 @@ class OperacoesMensagemService (){
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.criarMensagem(perfilId, MensagemConverter.getInstance().converterMensagemParaDto(mensagem))
-        var sucesso = false
+        var response = callback.execute()
 
-        callback.enqueue(object : Callback<MensagemDto> {
-            override fun onFailure(call: Call<MensagemDto>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
-            }
+        if(response.isSuccessful)
+            return true
 
-            override fun onResponse(call: Call<MensagemDto>, response: Response<MensagemDto>) {
-                if(response.isSuccessful && response.body() != null)
-                {
-                    sucesso = true
-                }
-            }
-        })
-
-        return sucesso
+        return false
     }
 
     fun deletarMensagem(activity: Activity, mensagemId : Int) : Boolean{
@@ -104,22 +82,12 @@ class OperacoesMensagemService (){
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.deletarMensagem(mensagemId)
-        var sucesso = false
+        var response = callback.execute()
 
-        callback.enqueue(object : Callback<MensagemDto> {
-            override fun onFailure(call: Call<MensagemDto>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
-            }
+        if(response.isSuccessful)
+            return true
 
-            override fun onResponse(call: Call<MensagemDto>, response: Response<MensagemDto>) {
-                if(response.isSuccessful && response.body() != null)
-                {
-                    sucesso = true
-                }
-            }
-        })
-
-        return sucesso
+        return false
     }
 
 

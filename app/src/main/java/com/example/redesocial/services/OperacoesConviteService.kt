@@ -17,13 +17,13 @@ import retrofit2.Response
 class OperacoesConviteService {
 
     companion object {
-        private lateinit var operacoes: OperacoesConviteService
+        private var operacoes: OperacoesConviteService? = null
 
         fun getInstance() : OperacoesConviteService{
             if(operacoes == null)
                 operacoes = OperacoesConviteService()
 
-            return operacoes
+            return operacoes as OperacoesConviteService
         }
     }
 
@@ -33,21 +33,18 @@ class OperacoesConviteService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.buscarMeusConvites(perfilId)
+        var response = callback.execute()
         var convites = mutableListOf<Convite>()
 
-        callback.enqueue(object : Callback<List<ConviteDto>> {
-            override fun onFailure(call: Call<List<ConviteDto>>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
+        if(response.isSuccessful && response.body() != null)
+        {
+            response.body()!!.forEach {
+                convites.add(ConviteConverter.getInstance().converterDtoParaConvite(it))
             }
+        }
 
-            override fun onResponse(call: Call<List<ConviteDto>>, response: Response<List<ConviteDto>>) {
-                if(response.isSuccessful && !response.body().isNullOrEmpty()) {
-                    response.body()!!.forEach {
-                        convites.add(ConviteConverter.getInstance().converterDtoParaConvite(it))
-                    }
-                }
-            }
-        })
+        if(convites.size == 0)
+            return null
 
         return convites
     }
@@ -58,21 +55,18 @@ class OperacoesConviteService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.buscarConvitesRecebidos(perfilId)
+        var response = callback.execute()
         var convites = mutableListOf<Convite>()
 
-        callback.enqueue(object : Callback<List<ConviteDto>> {
-            override fun onFailure(call: Call<List<ConviteDto>>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
+        if(response.isSuccessful && response.body() != null)
+        {
+            response.body()!!.forEach {
+                convites.add(ConviteConverter.getInstance().converterDtoParaConvite(it))
             }
+        }
 
-            override fun onResponse(call: Call<List<ConviteDto>>, response: Response<List<ConviteDto>>) {
-                if(response.isSuccessful && !response.body().isNullOrEmpty()) {
-                    response.body()!!.forEach {
-                        convites.add(ConviteConverter.getInstance().converterDtoParaConvite(it))
-                    }
-                }
-            }
-        })
+        if(convites.size == 0)
+            return null
 
         return convites
     }
@@ -83,21 +77,12 @@ class OperacoesConviteService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.aceitarConvite(perfilId, idConvidante)
-        var sucesso = false
+        var response = callback.execute()
 
-        callback.enqueue(object : Callback<Boolean> {
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
-            }
+        if(response.isSuccessful)
+            return true
 
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                if(response.isSuccessful && response.body() != null) {
-                    sucesso = true
-                }
-            }
-        })
-
-        return sucesso
+        return false
     }
 
     fun bloquearUsuario(activity: Activity, perfilId : Int, idUsuario : Int) : Boolean{
@@ -106,21 +91,12 @@ class OperacoesConviteService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.bloquearUsuario(perfilId, idUsuario)
-        var sucesso = false
+        var response = callback.execute()
 
-        callback.enqueue(object : Callback<Boolean> {
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
-            }
+        if(response.isSuccessful)
+            return true
 
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                if(response.isSuccessful && response.body() != null) {
-                    sucesso = true
-                }
-            }
-        })
-
-        return sucesso
+        return false
     }
 
     fun enviarConvite(activity: Activity, perfilId : Int, idConvidado : Int) : Boolean{
@@ -129,21 +105,12 @@ class OperacoesConviteService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.enviarConvite(perfilId,idConvidado)
-        var sucesso = false
+        var response = callback.execute()
 
-        callback.enqueue(object : Callback<Boolean> {
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
-            }
+        if(response.isSuccessful)
+            return true
 
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                if(response.isSuccessful && response.body() != null) {
-                    sucesso = true
-                }
-            }
-        })
-
-        return sucesso
+        return false
     }
 
     fun buscarSugestoesAmizade(activity: Activity, perfilId : Int) : List<Perfil>?{
@@ -152,21 +119,18 @@ class OperacoesConviteService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.buscarSugestoesAmizade(perfilId)
+        var response = callback.execute()
         var sugestoes = mutableListOf<Perfil>()
 
-        callback.enqueue(object : Callback<List<PerfilDto>> {
-            override fun onFailure(call: Call<List<PerfilDto>>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
+        if(response.isSuccessful && response.body() != null)
+        {
+            response.body()!!.forEach {
+                sugestoes.add(PerfilConverter.getInstance().converterDtoParaPerfil(it))
             }
+        }
 
-            override fun onResponse(call: Call<List<PerfilDto>>, response: Response<List<PerfilDto>>) {
-                if(response.isSuccessful && !response.body().isNullOrEmpty()) {
-                    response.body()!!.forEach {
-                        sugestoes.add(PerfilConverter.getInstance().converterDtoParaPerfil(it))
-                    }
-                }
-            }
-        })
+        if(sugestoes.size == 0)
+            return null
 
         return sugestoes
     }
@@ -177,21 +141,18 @@ class OperacoesConviteService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.buscarAmigos(perfilId)
+        var response = callback.execute()
         var amigos = mutableListOf<Perfil>()
 
-        callback.enqueue(object : Callback<List<PerfilDto>> {
-            override fun onFailure(call: Call<List<PerfilDto>>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
+        if(response.isSuccessful && response.body() != null)
+        {
+            response.body()!!.forEach {
+                amigos.add(PerfilConverter.getInstance().converterDtoParaPerfil(it))
             }
+        }
 
-            override fun onResponse(call: Call<List<PerfilDto>>, response: Response<List<PerfilDto>>) {
-                if(response.isSuccessful && !response.body().isNullOrEmpty()) {
-                    response.body()!!.forEach {
-                        amigos.add(PerfilConverter.getInstance().converterDtoParaPerfil(it))
-                    }
-                }
-            }
-        })
+        if(amigos.size == 0)
+            return null
 
         return amigos
     }
