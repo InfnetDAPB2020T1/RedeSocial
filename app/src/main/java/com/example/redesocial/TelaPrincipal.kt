@@ -1,5 +1,7 @@
 package com.example.redesocial
 
+import android.app.Activity
+import android.os.AsyncTask
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,12 +13,20 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.widget.TextView
+import com.example.redesocial.models.Perfil
+import com.example.redesocial.services.OperacoesPerfilService
+import com.example.redesocial.ui.carregamentoalerta.LoadingAlerta
+import com.example.redesocial.viewmodel.PerfilViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_convites.*
 
 class TelaPrincipal : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private  lateinit var perfilViewModel: PerfilViewModel
+    var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +48,9 @@ class TelaPrincipal : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        perfilViewModel = PerfilViewModel()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

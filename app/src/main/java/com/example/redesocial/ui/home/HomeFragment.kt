@@ -1,15 +1,12 @@
 package com.example.redesocial.ui.home
 
 import android.app.Activity
-import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.redesocial.R
@@ -17,8 +14,9 @@ import com.example.redesocial.adapters.PessoaAdapter
 import com.example.redesocial.models.Perfil
 import com.example.redesocial.models.Pessoa
 import com.example.redesocial.services.OperacoesConviteService
+import com.example.redesocial.services.OperacoesPerfilService
 import com.example.redesocial.ui.carregamentoalerta.LoadingAlerta
-import com.example.redesocial.util.converters.PerfilConverter
+import com.example.redesocial.viewmodel.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -34,6 +32,7 @@ class HomeFragment : Fragment() {
     )
 
     var auth = FirebaseAuth.getInstance()
+    private  lateinit var perfilViewModel: PerfilViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +45,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configurarRecyclerView()
+
+        activity!!.let { act->
+            perfilViewModel = ViewModelProviders.of(act)
+                .get(PerfilViewModel::class.java) }
+
+        if(perfilViewModel.perfilAtual == null)
+            BuscarInformacoesPerfilAsync(activity!!,auth.currentUser!!.uid,perfilViewModel).execute()
     }
 
     fun configurarRecyclerView()
@@ -89,6 +95,38 @@ class HomeFragment : Fragment() {
                 result.forEach{
                     listaPessoas.add(it)
                 }
+            }
+
+        }
+
+    }
+
+    class BuscarInformacoesPerfilAsync(activity: Activity, serieGerado : String,perfilViewModel: PerfilViewModel) : AsyncTask<Void, Void, Perfil?>()
+    {
+        var activity = activity
+        var serieGerado = serieGerado
+        var perfilViewModel = perfilViewModel
+        var dialogApi = LoadingAlerta(activity)
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            dialogApi.startLoadingDialog("inicializando...")
+        }
+
+        override fun doInBackground(vararg params: Void?): Perfil? {
+            var perfil = OperacoesPerfilService.getInstance().buscarPerfilPorSerie(activity,serieGerado)
+
+            dialogApi.dismiss()
+            return perfil
+        }
+
+        override fun onPostExecute(result: Perfil?) {
+            super.onPostExecute(result)
+
+            if(result != null)
+            {
+                perfilViewModel.setPerfil(Perfil(result.id,result.serieGerado,result.nome,result.dataNascimento,
+                    result.email,result.sobre,result.foto))
             }
 
         }
