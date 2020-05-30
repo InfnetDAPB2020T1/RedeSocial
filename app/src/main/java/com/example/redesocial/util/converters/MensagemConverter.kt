@@ -6,13 +6,13 @@ import com.example.redesocial.models.dtos.MensagemDto
 class MensagemConverter {
 
     companion object {
-        private lateinit var conversor: MensagemConverter
+        private var conversor: MensagemConverter? = null
 
         fun getInstance(): MensagemConverter {
             if (conversor == null)
                 conversor = MensagemConverter()
 
-            return conversor
+            return conversor as MensagemConverter
         }
     }
 

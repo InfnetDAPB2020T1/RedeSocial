@@ -6,13 +6,13 @@ import com.example.redesocial.models.dtos.ConviteDto
 class ConviteConverter {
 
     companion object {
-        private lateinit var conversor: ConviteConverter
+        private var conversor: ConviteConverter? = null
 
         fun getInstance(): ConviteConverter {
             if (conversor == null)
                 conversor = ConviteConverter()
 
-            return conversor
+            return conversor as ConviteConverter
         }
     }
 

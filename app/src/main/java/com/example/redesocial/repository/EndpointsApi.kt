@@ -39,7 +39,7 @@ interface EndpointsApi {
     fun buscarTimeline(@Path("id") id : Int) : Call<List<MensagemDto>>
 
     @POST("mensagem/{idPerfil}")
-    fun criarMensagem(@Path("id") idPerfil : Int, @Body mensagemDto: MensagemDto) : Call<Void>
+    fun criarMensagem(@Path("idPerfil") idPerfil : Int, @Body mensagemDto: MensagemDto) : Call<Unit>
 
     @DELETE("mensagem/{id}")
     fun deletarMensagem(@Path("id") id : Int) : Call<MensagemDto>
