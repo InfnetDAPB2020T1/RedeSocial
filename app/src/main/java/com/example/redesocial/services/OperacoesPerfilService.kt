@@ -115,20 +115,12 @@ class OperacoesPerfilService {
 
         val endpoint = retrofitClient.create(EndpointsApi::class.java)
         val callback = endpoint.atualizarPerfil(perfil.id!!, PerfilConverter.getInstance().converterPerfilParaDto(perfil))
-        var sucesso = false
+        var resposta = callback.execute()
 
-        callback.enqueue(object : Callback<PerfilDto> {
-            override fun onFailure(call: Call<PerfilDto>, t: Throwable) {
-                Toast.makeText(activity, "Problema ao tentar acessar os dados!", Toast.LENGTH_SHORT).show()
-            }
+        if(resposta.isSuccessful && resposta.body() != null)
+            return true
 
-            override fun onResponse(call: Call<PerfilDto>, response: Response<PerfilDto>) {
-                if(response.isSuccessful && response.body() != null)
-                    sucesso = true;
-            }
-        })
-
-        return sucesso
+        return false
     }
 
     fun buscarPerfilPorSerie(activity: Activity, serie : String) : Perfil?{
