@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:visibility="gone"
-        android:text="Não existem convites seus aguardando resposta"
+        android:text="Não há mensagens suas ou de seus amigos para serem mostradas"
         android:fontFamily="casual"
         android:textSize="28sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

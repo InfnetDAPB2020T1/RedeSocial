@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.redesocial.R
 import com.example.redesocial.adapters.PerfilAdapter
 import com.example.redesocial.adapters.PessoaAdapter
+import com.example.redesocial.adapters.SugestaoAdapter
 import com.example.redesocial.models.Perfil
 import com.example.redesocial.models.Pessoa
 import com.example.redesocial.services.OperacoesConviteService
@@ -110,7 +111,7 @@ class HomeFragment : Fragment() {
                 }
 
                 lista.layoutManager = LinearLayoutManager(activity)
-                lista.adapter = PerfilAdapter(listaPessoas,activity,perfilViewModel,"convidar")
+                lista.adapter = SugestaoAdapter(listaPessoas,activity,perfilViewModel)
             }
             else
             {

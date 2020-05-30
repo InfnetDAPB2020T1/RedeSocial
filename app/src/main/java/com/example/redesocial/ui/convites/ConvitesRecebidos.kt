@@ -82,7 +82,7 @@ class ConvitesRecebidos : Fragment() {
                 }
 
                 lista.layoutManager = LinearLayoutManager(activity)
-                lista.adapter = PerfilAdapter(listaPessoas,activity,perfilViewModel,"aceitar")
+                lista.adapter = PerfilAdapter(listaPessoas,activity,perfilViewModel)
             }
             else
             {

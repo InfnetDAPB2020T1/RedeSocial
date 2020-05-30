@@ -51,13 +51,13 @@ interface EndpointsApi {
     fun buscarConvitesRecebidos(@Path("id") id : Int) : Call<List<ConviteDto>>
 
     @GET("amizades/{perfilId}/aceitar/{idConvidante}")
-    fun aceitarConvite(@Path("perfilId") perfilId : Int, @Path("idConvidante") idConvidante : Int) : Call<Boolean>
+    fun aceitarConvite(@Path("perfilId") perfilId : Int, @Path("idConvidante") idConvidante : Int) : Call<Unit>
 
     @GET("amizades/{perfilId}/bloquear/{idUsuario}")
-    fun bloquearUsuario(@Path("perfilId") perfilId : Int, @Path("idUsuario") idUsuario : Int) : Call<Boolean>
+    fun bloquearUsuario(@Path("perfilId") perfilId : Int, @Path("idUsuario") idUsuario : Int) : Call<Unit>
 
     @GET("amizades/{perfilId}/convidar/{idConvidado}")
-    fun enviarConvite(@Path("perfilId") perfilId : Int, @Path("idConvidado") idConvidado : Int) : Call<Boolean>
+    fun enviarConvite(@Path("perfilId") perfilId : Int, @Path("idConvidado") idConvidado : Int) : Call<Unit>
 
     @GET("amizades/sugestoes/{id}")
     fun buscarSugestoesAmizade(@Path("id") id : Int) : Call<List<PerfilDto>>

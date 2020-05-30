@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redesocial.R
 import com.example.redesocial.models.Perfil
@@ -15,38 +16,26 @@ import com.example.redesocial.services.OperacoesConviteService
 import com.example.redesocial.ui.carregamentoalerta.LoadingAlerta
 import com.example.redesocial.viewmodel.PerfilViewModel
 
-class PerfilAdapter(listaPerfil : MutableList<Perfil>, activity: Activity,perfilViewModel: PerfilViewModel, tipoAcao : String) : RecyclerView.Adapter<PerfilAdapter.PerfilViewHolder>(){
+class PerfilAdapter(listaPerfil : MutableList<Perfil>, activity: Activity,perfilViewModel: PerfilViewModel) : RecyclerView.Adapter<PerfilAdapter.PerfilViewHolder>(){
 
     var listaPerfil = listaPerfil
     var activity = activity
     var perfilViewModel = perfilViewModel
-    var tipoAcao = tipoAcao
 
-    class PerfilViewHolder(itemView: View, listaPerfil: MutableList<Perfil>, perfilAdapter: PerfilAdapter , activity: Activity, perfilViewModel: PerfilViewModel, tipoAcao: String):
+    class PerfilViewHolder(itemView: View, listaPerfil: MutableList<Perfil>, perfilAdapter: PerfilAdapter, activity: Activity, perfilViewModel: PerfilViewModel):
         RecyclerView.ViewHolder(itemView){
 
         var nomeCard = itemView.findViewById<TextView>(R.id.username_lista)
         var avatarCard = itemView.findViewById<ImageView>(R.id.foto_lista)
+
         var btn_exclui = itemView.findViewById<ImageButton>(R.id.exclui_pessoa).setOnClickListener {
 
-            BloquearPerfilAsync(activity, perfilViewModel, listaPerfil[adapterPosition]).execute()
-
-            var pos = adapterPosition
-            listaPerfil.removeAt(adapterPosition)
-            perfilAdapter.notifyDataSetChanged()
-            perfilAdapter.notifyItemRemoved(pos)
+            BloquearPerfilAsync(activity, perfilViewModel, listaPerfil[adapterPosition],listaPerfil,adapterPosition,perfilAdapter).execute()
         }
 
         var btn_adiciona = itemView.findViewById<ImageButton>(R.id.adiciona_pessoa).setOnClickListener {
-            if(tipoAcao == "convidar")
-                ConvidarPerfilAsync(activity,perfilViewModel,listaPerfil[adapterPosition]).execute()
-            else if(tipoAcao == "aceitar")
-                AceitarConvitePerfilAsync(activity,perfilViewModel,listaPerfil[adapterPosition]).execute()
 
-            var pos = adapterPosition
-            listaPerfil.removeAt(adapterPosition)
-            perfilAdapter.notifyDataSetChanged()
-            perfilAdapter.notifyItemRemoved(pos)
+            AceitarConvitePerfilAsync(activity,perfilViewModel,listaPerfil[adapterPosition],listaPerfil,adapterPosition,perfilAdapter).execute()
         }
     }
 
@@ -55,7 +44,7 @@ class PerfilAdapter(listaPerfil : MutableList<Perfil>, activity: Activity,perfil
             .from(parent.context)
             .inflate(R.layout.item_pessoa, parent, false)
 
-        return PerfilViewHolder(card, listaPerfil, this, activity,perfilViewModel,tipoAcao)
+        return PerfilViewHolder(card, listaPerfil,this,activity,perfilViewModel)
     }
 
     override fun getItemCount() = listaPerfil.size
@@ -67,11 +56,14 @@ class PerfilAdapter(listaPerfil : MutableList<Perfil>, activity: Activity,perfil
         holder.avatarCard.setImageResource(R.drawable.userpeqbkggray)
     }
 
-    class BloquearPerfilAsync(activity: Activity, perfilViewModel: PerfilViewModel, pessoa: Perfil) : AsyncTask<Void, Void, Boolean>()
+    class BloquearPerfilAsync(activity: Activity, perfilViewModel: PerfilViewModel, pessoa: Perfil, listaPerfil: MutableList<Perfil>,position: Int,perfilAdapter: PerfilAdapter) : AsyncTask<Void, Void, Boolean>()
     {
         var activity = activity
         var perfilViewModel = perfilViewModel
         var pessoa = pessoa
+        var listaPerfil = listaPerfil
+        var position = position
+        var perfilAdapter = perfilAdapter
         var dialogApi = LoadingAlerta(activity)
 
         override fun onPreExecute() {
@@ -92,54 +84,22 @@ class PerfilAdapter(listaPerfil : MutableList<Perfil>, activity: Activity,perfil
 
             if(result)
             {
-
-
+                listaPerfil.removeAt(position)
+                perfilAdapter.notifyItemRemoved(position);
             }
 
         }
 
     }
 
-
-    class ConvidarPerfilAsync(activity: Activity, perfilViewModel: PerfilViewModel, pessoa: Perfil) : AsyncTask<Void, Void, Boolean>()
+    class AceitarConvitePerfilAsync(activity: Activity, perfilViewModel: PerfilViewModel, pessoa: Perfil, listaPerfil: MutableList<Perfil>, position: Int, perfilAdapter: PerfilAdapter) : AsyncTask<Void, Void, Boolean>()
     {
         var activity = activity
         var perfilViewModel = perfilViewModel
         var pessoa = pessoa
-        var dialogApi = LoadingAlerta(activity)
-
-        override fun onPreExecute() {
-            super.onPreExecute()
-            dialogApi.startLoadingDialog("Enviando convite...")
-        }
-
-        override fun doInBackground(vararg params: Void?): Boolean {
-            var sucesso = OperacoesConviteService.getInstance().enviarConvite(activity,perfilViewModel.perfilAtual!!.id!!,pessoa.id!!)
-
-            dialogApi.dismiss()
-
-            return sucesso
-        }
-
-        override fun onPostExecute(result: Boolean) {
-            super.onPostExecute(result)
-
-            if(result)
-            {
-
-
-            }
-
-        }
-
-    }
-
-
-    class AceitarConvitePerfilAsync(activity: Activity, perfilViewModel: PerfilViewModel, pessoa: Perfil) : AsyncTask<Void, Void, Boolean>()
-    {
-        var activity = activity
-        var perfilViewModel = perfilViewModel
-        var pessoa = pessoa
+        var listaPerfil = listaPerfil
+        var position = position
+        var perfilAdapter = perfilAdapter
         var dialogApi = LoadingAlerta(activity)
 
         override fun onPreExecute() {
@@ -160,8 +120,8 @@ class PerfilAdapter(listaPerfil : MutableList<Perfil>, activity: Activity,perfil
 
             if(result)
             {
-
-
+                listaPerfil.removeAt(position)
+                perfilAdapter.notifyItemRemoved(position);
             }
 
         }
