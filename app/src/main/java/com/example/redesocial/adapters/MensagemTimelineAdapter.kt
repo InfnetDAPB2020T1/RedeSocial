@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redesocial.R
+import com.example.redesocial.models.Mensagem
 import com.example.redesocial.models.MensagemTimeline
 import com.google.android.material.imageview.ShapeableImageView
 
-class MensagemTimelineAdapter(listaMensagens : List<MensagemTimeline>) : RecyclerView.Adapter<MensagemTimelineAdapter.MensagemTimelineViewHolder>() {
+class MensagemTimelineAdapter(listaMensagens : MutableList<Mensagem>) : RecyclerView.Adapter<MensagemTimelineAdapter.MensagemTimelineViewHolder>() {
 
     var listaMensagens = listaMensagens
 
@@ -33,8 +34,9 @@ class MensagemTimelineAdapter(listaMensagens : List<MensagemTimeline>) : Recycle
 
     override fun onBindViewHolder(holder: MensagemTimelineViewHolder, position: Int) {
 
-        holder.nomeCard.text = listaMensagens[position].username
-        holder.avatarCard.setImageResource(listaMensagens[position].foto)
-        holder.textoCard.text = listaMensagens[position].textoMensagem
+        holder.nomeCard.text = listaMensagens[position].autor.nome
+        //holder.avatarCard.setImageResource(listaMensagens[position].foto)
+        holder.avatarCard.setImageResource(R.drawable.userquadrado)
+        holder.textoCard.text = listaMensagens[position].conteudo
     }
 }
