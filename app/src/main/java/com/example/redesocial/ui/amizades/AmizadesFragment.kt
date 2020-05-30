@@ -1,29 +1,34 @@
 package com.example.redesocial.ui.amizades
 
 
+import android.app.Activity
+import android.os.AsyncTask
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.redesocial.R
+import com.example.redesocial.adapters.AmizadeAdapter
+import com.example.redesocial.adapters.PerfilAdapter
 import com.example.redesocial.adapters.PessoaAdapter
+import com.example.redesocial.models.Perfil
 import com.example.redesocial.models.Pessoa
+import com.example.redesocial.services.OperacoesConviteService
+import com.example.redesocial.ui.carregamentoalerta.LoadingAlerta
+import com.example.redesocial.viewmodel.PerfilViewModel
 import kotlinx.android.synthetic.main.fragment_amizades.*
 
 
 class AmizadesFragment : Fragment() {
 
-    var listaPessoas = mutableListOf<Pessoa>(
-        Pessoa("Lucas",R.drawable.userpeqbkggray),
-        Pessoa("Eduardo",R.drawable.userpeqbkggray),
-        Pessoa("Pedro",R.drawable.userpeqbkggray),
-        Pessoa("Paulo",R.drawable.userpeqbkggray),
-        Pessoa("Cecília",R.drawable.userpeqbkggray),
-        Pessoa("Santos",R.drawable.userpeqbkggray)
-    )
+    var listaPessoas = mutableListOf<Perfil>()
+    private lateinit var perfilViewModel: PerfilViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,19 +39,55 @@ class AmizadesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        configurarRecyclerView()
+
+        activity!!.let { act->
+            perfilViewModel = ViewModelProviders.of(act)
+                .get(PerfilViewModel::class.java) }
+
+        if(perfilViewModel.perfilAtual != null)
+            BuscarAmizadesAsync(activity!!,listaPessoas,perfilViewModel).execute()
     }
 
-    fun configurarRecyclerView()
+    class BuscarAmizadesAsync(activity: Activity, listaPessoas : MutableList<Perfil>, perfilViewModel: PerfilViewModel) : AsyncTask<Void, Void, List<Perfil>?>()
     {
-        if(!listaPessoas.isNullOrEmpty()) {
-            listagemAmizades.layoutManager = LinearLayoutManager(activity)
-            listagemAmizades.adapter = PessoaAdapter(listaPessoas)
+        var activity = activity
+        var listaPessoas = listaPessoas
+        var perfilViewModel = perfilViewModel
+        var dialogApi = LoadingAlerta(activity)
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            dialogApi.startLoadingDialog("Buscando sugestões de amizade...")
         }
-        else
-        {
-            listagemAmizades.visibility = View.GONE
-            empty_view_amizades.visibility = View.VISIBLE
+
+        override fun doInBackground(vararg params: Void?): List<Perfil>? {
+            var listaPerf = OperacoesConviteService.getInstance().buscarAmigos(activity, perfilViewModel.perfilAtual!!.id!!)
+            dialogApi.dismiss()
+            return listaPerf
         }
+
+        override fun onPostExecute(result: List<Perfil>?) {
+            super.onPostExecute(result)
+
+            var lista = activity!!.findViewById<RecyclerView>(R.id.listagemAmizades)
+
+            if(!result.isNullOrEmpty())
+            {
+                result.forEach{
+                    listaPessoas.add(it)
+                }
+
+                lista.layoutManager = LinearLayoutManager(activity)
+                lista.adapter = AmizadeAdapter(listaPessoas,activity,perfilViewModel)
+            }
+            else
+            {
+                var vazio = activity!!.findViewById<TextView>(R.id.empty_view_amizades)
+                lista.visibility = View.GONE
+                vazio.visibility = View.VISIBLE
+            }
+
+        }
+
     }
 }

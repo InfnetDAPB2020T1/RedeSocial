@@ -59,24 +59,9 @@ class HomeFragment : Fragment() {
         }
         else
         {
-            CarregarSugestoesAmizadeAsync(activity!!,listaPessoas,perfilViewModel.perfilAtual!!.id!!).execute()
+            CarregarSugestoesAmizadeAsync(activity!!,listaPessoas,perfilViewModel).execute()
         }
 
-    }
-
-    fun configurarRecyclerView()
-    {
-        listaPessoas = mutableListOf()
-        if(!listaPessoas.isNullOrEmpty())
-        {
-            listagemPessoas.layoutManager = LinearLayoutManager(activity)
-            listagemPessoas.adapter = PerfilAdapter(listaPessoas)
-        }
-        else
-        {
-            listagemPessoas.visibility = View.GONE
-            empty_view_home.visibility = View.VISIBLE
-        }
     }
 
     fun subscribe()
@@ -95,11 +80,11 @@ class HomeFragment : Fragment() {
         })
     }
 
-    class CarregarSugestoesAmizadeAsync(activity: Activity, listaPessoas : MutableList<Perfil>, perfilId : Int) : AsyncTask<Void, Void, List<Perfil>?>()
+    class CarregarSugestoesAmizadeAsync(activity: Activity, listaPessoas : MutableList<Perfil>, perfilViewModel: PerfilViewModel) : AsyncTask<Void, Void, List<Perfil>?>()
     {
         var activity = activity
         var listaPessoas = listaPessoas
-        var perfilId = perfilId
+        var perfilViewModel = perfilViewModel
         var dialogApi = LoadingAlerta(activity)
 
         override fun onPreExecute() {
@@ -108,7 +93,7 @@ class HomeFragment : Fragment() {
         }
 
         override fun doInBackground(vararg params: Void?): List<Perfil>? {
-            var listaPerf = OperacoesConviteService.getInstance().buscarSugestoesAmizade(activity,perfilId)
+            var listaPerf = OperacoesConviteService.getInstance().buscarSugestoesAmizade(activity,perfilViewModel.perfilAtual!!.id!!)
             dialogApi.dismiss()
             return listaPerf
         }
@@ -125,7 +110,7 @@ class HomeFragment : Fragment() {
                 }
 
                 lista.layoutManager = LinearLayoutManager(activity)
-                lista.adapter = PerfilAdapter(listaPessoas)
+                lista.adapter = PerfilAdapter(listaPessoas,activity,perfilViewModel,"convidar")
             }
             else
             {
@@ -167,7 +152,7 @@ class HomeFragment : Fragment() {
                 perfilViewModel.setPerfil(Perfil(result.id,result.serieGerado,result.nome,result.dataNascimento,
                     result.email,result.sobre,result.foto))
 
-                CarregarSugestoesAmizadeAsync(activity,listaPessoas,result.id!!).execute()
+                CarregarSugestoesAmizadeAsync(activity,listaPessoas,perfilViewModel).execute()
 
                 perfilViewModel.setModificado()
 
