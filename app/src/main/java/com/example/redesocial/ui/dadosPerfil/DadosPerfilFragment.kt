@@ -60,6 +60,44 @@ class DadosPerfilFragment : Fragment() {
             var intent = Intent(activity!!,MainActivity::class.java)
             startActivity(intent)
         }
+
+        btn_deletar_perfil.setOnClickListener {
+            ExcluirPerfilAsync(activity!!,perfilViewModel,auth).execute()
+        }
+    }
+
+    class ExcluirPerfilAsync(activity: Activity, perfilViewModel: PerfilViewModel,auth: FirebaseAuth) : AsyncTask<Void, Void, Boolean>()
+    {
+        var activity = activity
+        var perfilViewModel = perfilViewModel
+        var auth = auth
+        var dialogApi = LoadingAlerta(activity)
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            dialogApi.startLoadingDialog("ExcluindoPerfil...")
+        }
+
+        override fun doInBackground(vararg params: Void?): Boolean {
+            var sucesso = OperacoesPerfilService.getInstance().deletarPerfil(activity,perfilViewModel.perfilAtual!!.id!!)
+            //dialogApi.dismiss()
+            return sucesso
+        }
+
+        override fun onPostExecute(result: Boolean) {
+            super.onPostExecute(result)
+            if(result)
+            {
+                auth.currentUser!!.delete().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        dialogApi.dismiss()
+                        var intent = Intent(activity,MainActivity::class.java)
+                        activity.startActivity(intent)
+                    }
+                }
+            }
+        }
+
     }
 
 }

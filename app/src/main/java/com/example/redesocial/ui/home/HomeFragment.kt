@@ -71,7 +71,6 @@ class HomeFragment : Fragment() {
             if (perfilViewModel.perfilAtual != null) {
                 var nav: NavigationView = activity!!.findViewById(R.id.nav_view)
                 var header = nav.inflateHeaderView(R.layout.nav_header_tela_principal)
-                //var header = navView.getHeaderView(0)
                 var menuUsername = header.findViewById<TextView>(R.id.header_username)
                 var menuEmail = header.findViewById<TextView>(R.id.header_email)
 

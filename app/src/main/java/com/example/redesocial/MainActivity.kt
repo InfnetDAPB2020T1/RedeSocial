@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 
                 } else {
                     // If sign in fails, display a message to the user.
+                    dialog.dismiss()
                     Toast.makeText(baseContext, "Usuário não encontrado!",
                         Toast.LENGTH_SHORT).show()
                 }
