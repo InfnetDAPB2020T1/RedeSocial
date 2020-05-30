@@ -12,4 +12,13 @@ class PerfilViewModel : ViewModel(){
     {
         perfilAtual = perfil
     }
+
+    fun setModificado()
+    {
+        if(modificado.value == 0)
+            modificado.value = 1
+        else
+            if(modificado.value == 1)
+                modificado.value = 0
+    }
 }

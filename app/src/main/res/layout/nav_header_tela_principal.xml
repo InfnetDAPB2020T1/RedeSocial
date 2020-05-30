@@ -16,24 +16,25 @@
         android:id="@+id/card_img_menu"
         android:layout_width="54dp"
         android:layout_height="54dp"
+        app:cardCornerRadius="27dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13"
-        app:cardCornerRadius="27dp"
-        app:cardElevation="0dp">
+        app:layout_constraintVertical_bias="0.13">
 
-    <ImageView
-        android:id="@+id/foto_menu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/nav_header_desc"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/userquadrado" />
+        <ImageView
+            android:id="@+id/foto_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/nav_header_desc"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/userquadrado" />
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
+        android:id="@+id/header_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -43,7 +44,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/header_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle"
