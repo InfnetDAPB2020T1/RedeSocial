@@ -18,12 +18,6 @@
         tools:layout="@layout/fragment_dados_perfil" />
 
     <fragment
-        android:id="@+id/nav_pesquisa"
-        android:name="com.example.redesocial.ui.pesquisa.PesquisaFragment"
-        android:label="@string/menu_pesquisa"
-        tools:layout="@layout/fragment_pesquisa" />
-
-    <fragment
         android:id="@+id/nav_amizades"
         android:name="com.example.redesocial.ui.amizades.AmizadesFragment"
         android:label="@string/menu_amizades"
@@ -48,14 +42,17 @@
         tools:layout="@layout/fragment_editar_perfil" />
 
     <fragment
-        android:id="@+id/nav_deletar_perfil"
-        android:name="com.example.redesocial.ui.deletarPerfil.DeletarPerfilFragment"
-        android:label="@string/menu_deletar_perfil"
-        tools:layout="@layout/fragment_deletar_perfil" />
-
-    <fragment
         android:id="@+id/nav_timeline"
         android:name="com.example.redesocial.ui.timeline.TimelineFragment"
         android:label="@string/menu_timeline"
         tools:layout="@layout/fragment_timeline" />
+    <fragment
+        android:id="@+id/nav_anuncio"
+        android:name="com.example.redesocial.ui.anuncio.AnuncioFragment"
+        android:label="@string/menu_anuncio" />
+    <fragment
+        android:id="@+id/nav_containerPesquisa"
+        android:name="com.example.redesocial.ui.pesquisa.ContainerPesquisaFragment"
+        android:label="@string/menu_pesquisa"
+        tools:layout="@layout/fragment_container_pesquisa" />
 </navigation>

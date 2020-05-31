@@ -25,7 +25,7 @@
             android:icon="@drawable/ic_convite_black"
             android:title="@string/menu_convites" />
         <item
-            android:id="@+id/nav_pesquisa"
+            android:id="@+id/nav_containerPesquisa"
             android:icon="@drawable/ic_search_for_black"
             android:title="@string/menu_pesquisa" />
     </group>
@@ -41,9 +41,9 @@
                 android:icon="@drawable/ic_editar_perfil_black"
                 android:title="@string/menu_editar_perfil" />
             <item
-                android:id="@+id/nav_deletar_perfil"
-                android:icon="@drawable/ic_deletar_perfil_black"
-                android:title="@string/menu_deletar_perfil" />
+                android:id="@+id/nav_anuncio"
+                android:icon="@drawable/ic_anuncio"
+                android:title="@string/menu_anuncio" />
         </menu>
     </item>
 

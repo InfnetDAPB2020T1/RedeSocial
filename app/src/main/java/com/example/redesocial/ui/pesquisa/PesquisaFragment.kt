@@ -9,8 +9,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 
 import com.example.redesocial.R
+import com.example.redesocial.viewmodel.PerfilViewModel
+import com.example.redesocial.viewmodel.PesquisaViewModel
+import kotlinx.android.synthetic.main.fragment_pesquisa.*
 
 
 /**
@@ -24,14 +28,37 @@ class PesquisaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        pesquisaViewModel =
-            ViewModelProviders.of(this).get(PesquisaViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_pesquisa, container, false)
-        val textView: TextView = root.findViewById(R.id.text_pesquisa)
-        pesquisaViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        activity!!.let { act->
+            pesquisaViewModel = ViewModelProviders.of(act)
+                .get(PesquisaViewModel::class.java) }
+
+        btn_pesquisar_user.setOnClickListener {
+            var nome = nome_pesquisar.text.toString()
+
+            if(!nome.isNullOrBlank())
+            {
+                if(pesquisaViewModel != null)
+                {
+                    pesquisaViewModel.setNome(nome)
+
+                    var navController = activity!!.findNavController(R.id.host_pesquisa)
+
+                    navController.navigate(R.id.resultadoPesquisaFragment)
+                }
+
+            }
+
+        }
+
+
     }
 
 

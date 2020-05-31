@@ -11,11 +11,16 @@
     <string name="menu_home">Home</string>
     <string name="menu_timeline">Timeline</string>
     <string name="menu_pesquisa">Pesquisa</string>
+    <string name="pesquisa_resultado">Resultado da Pesquisa</string>
     <string name="menu_nova_mensagem">Nova Mensagem</string>
     <string name="menu_dados_perfil">Dados Perfil</string>
     <string name="menu_editar_perfil">Editar Perfil</string>
     <string name="menu_deletar_perfil">Deletar Perfil</string>
     <string name="menu_amizades">Amizades</string>
     <string name="menu_convites">Convites</string>
+    <string name="menu_anuncio">Anúncios</string>
+
+    <string name="admob_app_id">ca-app-pub-3362114952168152~4762607716</string>
+    <string name="admob_banner_ad">ca-app-pub-3362114952168152/1561729309</string>
 
 </resources>
