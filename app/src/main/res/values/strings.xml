@@ -11,6 +11,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_timeline">Timeline</string>
     <string name="menu_pesquisa">Pesquisa</string>
+    <string name="pesquisa_resultado">Resultado da Pesquisa</string>
     <string name="menu_nova_mensagem">Nova Mensagem</string>
     <string name="menu_dados_perfil">Dados Perfil</string>
     <string name="menu_editar_perfil">Editar Perfil</string>

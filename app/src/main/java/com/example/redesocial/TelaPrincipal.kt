@@ -19,6 +19,7 @@ import com.example.redesocial.models.Perfil
 import com.example.redesocial.services.OperacoesPerfilService
 import com.example.redesocial.ui.carregamentoalerta.LoadingAlerta
 import com.example.redesocial.viewmodel.PerfilViewModel
+import com.example.redesocial.viewmodel.PesquisaViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +30,7 @@ class TelaPrincipal : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     var perfilViewModel: PerfilViewModel= PerfilViewModel()
+    var pesquisaViewModel: PesquisaViewModel = PesquisaViewModel()
     var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +47,7 @@ class TelaPrincipal : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_dados_perfil, R.id.nav_timeline,
-                R.id.nav_pesquisa, R.id.nav_nova_mensagem, R.id.nav_editar_perfil,
+                R.id.nav_containerPesquisa, R.id.nav_nova_mensagem, R.id.nav_editar_perfil,
                 R.id.nav_amizades,R.id.nav_convites,R.id.nav_anuncio
             ), drawerLayout
         )
