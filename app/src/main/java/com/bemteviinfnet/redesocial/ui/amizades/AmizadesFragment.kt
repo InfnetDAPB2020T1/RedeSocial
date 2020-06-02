@@ -53,7 +53,7 @@ class AmizadesFragment : Fragment() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-            dialogApi.startLoadingDialog("Buscando sugestões de amizade...")
+            dialogApi.startLoadingDialog("Buscando amizades...")
         }
 
         override fun doInBackground(vararg params: Void?): List<Perfil>? {
