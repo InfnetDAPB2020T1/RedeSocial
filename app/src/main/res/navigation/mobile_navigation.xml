@@ -7,52 +7,52 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.redesocial.ui.home.HomeFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_dados_perfil"
-        android:name="com.example.redesocial.ui.dadosPerfil.DadosPerfilFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.dadosPerfil.DadosPerfilFragment"
         android:label="@string/menu_dados_perfil"
         tools:layout="@layout/fragment_dados_perfil" />
 
     <fragment
         android:id="@+id/nav_amizades"
-        android:name="com.example.redesocial.ui.amizades.AmizadesFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.amizades.AmizadesFragment"
         android:label="@string/menu_amizades"
         tools:layout="@layout/fragment_amizades" />
 
     <fragment
         android:id="@+id/nav_convites"
-        android:name="com.example.redesocial.ui.convites.ConvitesFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.convites.ConvitesFragment"
         android:label="@string/menu_convites"
         tools:layout="@layout/fragment_convites" />
 
     <fragment
         android:id="@+id/nav_nova_mensagem"
-        android:name="com.example.redesocial.ui.novaMensagem.NovaMensagemFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.novaMensagem.NovaMensagemFragment"
         android:label="@string/menu_nova_mensagem"
         tools:layout="@layout/fragment_nova_mensagem" />
 
     <fragment
         android:id="@+id/nav_editar_perfil"
-        android:name="com.example.redesocial.ui.editarPerfil.EditarPerfilFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.editarPerfil.EditarPerfilFragment"
         android:label="@string/menu_editar_perfil"
         tools:layout="@layout/fragment_editar_perfil" />
 
     <fragment
         android:id="@+id/nav_timeline"
-        android:name="com.example.redesocial.ui.timeline.TimelineFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.timeline.TimelineFragment"
         android:label="@string/menu_timeline"
         tools:layout="@layout/fragment_timeline" />
     <fragment
         android:id="@+id/nav_anuncio"
-        android:name="com.example.redesocial.ui.anuncio.AnuncioFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.anuncio.AnuncioFragment"
         android:label="@string/menu_anuncio" />
     <fragment
         android:id="@+id/nav_containerPesquisa"
-        android:name="com.example.redesocial.ui.pesquisa.ContainerPesquisaFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.pesquisa.ContainerPesquisaFragment"
         android:label="@string/menu_pesquisa"
         tools:layout="@layout/fragment_container_pesquisa" />
 </navigation>

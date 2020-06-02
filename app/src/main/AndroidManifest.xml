@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.redesocial">
+    package="com.bemteviinfnet.redesocial">
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
@@ -11,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Cadastro"
+        <activity android:name="com.bemteviinfnet.redesocial.Cadastro"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
         <activity
-            android:name=".TelaPrincipal"
+            android:name="com.bemteviinfnet.redesocial.TelaPrincipal"
             android:label="@string/title_activity_tela_principal"
             android:theme="@style/Geral" />
         <activity
-            android:name=".TelaInicial"
+            android:name="com.bemteviinfnet.redesocial.TelaInicial"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.bemteviinfnet.redesocial.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
