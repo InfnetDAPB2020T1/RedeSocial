@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/pesquisaFragment"
-        android:name="com.example.redesocial.ui.pesquisa.PesquisaFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.pesquisa.PesquisaFragment"
         android:label="@string/menu_pesquisa" />
     <fragment
         android:id="@+id/resultadoPesquisaFragment"
-        android:name="com.example.redesocial.ui.pesquisa.ResultadoPesquisaFragment"
+        android:name="com.bemteviinfnet.redesocial.ui.pesquisa.ResultadoPesquisaFragment"
         android:label="@string/pesquisa_resultado"
         tools:layout="@layout/fragment_resultado_pesquisa" />
 </navigation>

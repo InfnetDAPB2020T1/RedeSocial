@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/convitesRecebidos"
-        android:name="com.example.redesocial.ui.convites.ConvitesRecebidos"
+        android:name="com.bemteviinfnet.redesocial.ui.convites.ConvitesRecebidos"
         android:label="fragment_convites_recebidos"
         tools:layout="@layout/fragment_convites_recebidos" />
     <fragment
         android:id="@+id/convitesEnviados"
-        android:name="com.example.redesocial.ui.convites.ConvitesEnviados"
+        android:name="com.bemteviinfnet.redesocial.ui.convites.ConvitesEnviados"
         android:label="fragment_convites_enviados"
         tools:layout="@layout/fragment_convites_enviados" />
 </navigation>
